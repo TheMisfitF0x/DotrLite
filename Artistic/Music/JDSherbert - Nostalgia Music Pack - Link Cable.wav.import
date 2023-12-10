@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bq77ow5shf7m7"
+path="res://.godot/imported/JDSherbert - Nostalgia Music Pack - Link Cable.wav-e19633a2198a30a75610801f4476a9c3.sample"
+
+[deps]
+
+source_file="res://Artistic/Music/JDSherbert - Nostalgia Music Pack - Link Cable.wav"
+dest_files=["res://.godot/imported/JDSherbert - Nostalgia Music Pack - Link Cable.wav-e19633a2198a30a75610801f4476a9c3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://cql1uj6ai7vl7"]
+
+[ext_resource type="Script" path="res://Technical/Prefabs/Enemy/Enemy.gd" id="1_mdqrk"]
+[ext_resource type="Texture2D" uid="uid://b6jah3h3hatip" path="res://Artistic/Sprites/enemy_A.png" id="2_4odfc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_64ee7"]
+font_size = 11
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m6bnb"]
+radius = 17.0003
+
+[node name="Enemy" type="CharacterBody2D" groups=["Damageable", "Enemy"]]
+disable_mode = 2
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_mdqrk")
+health = 200
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -20.0
+offset_top = -37.0
+offset_right = 20.0
+offset_bottom = -16.0
+auto_translate = false
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 44.0
+offset_bottom = 16.0
+color = Color(1, 0, 0, 1)
+
+[node name="HealthLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 42.0
+offset_bottom = 23.0
+text = "100/100"
+label_settings = SubResource("LabelSettings_64ee7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
+rotation = 1.57079
+shape = SubResource("CircleShape2D_m6bnb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.57079
+scale = Vector2(0.590632, 0.590632)
+texture = ExtResource("2_4odfc")

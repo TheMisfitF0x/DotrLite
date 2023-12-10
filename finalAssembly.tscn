@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://d28fln5d5r7gd"]
+
+[ext_resource type="Script" path="res://Technical/TechScripts/GameManager.gd" id="1_2mn1i"]
+[ext_resource type="Texture2D" uid="uid://fg6kktq6xcwq" path="res://Artistic/Sprites/bg.jpg" id="1_p3lw6"]
+[ext_resource type="Script" path="res://Technical/TechScripts/WaveManager.gd" id="2_sqhqt"]
+[ext_resource type="PackedScene" uid="uid://c6vydyw5tfype" path="res://Technical/Scenes/Room.tscn" id="4_h2h47"]
+[ext_resource type="PackedScene" uid="uid://citpecephjije" path="res://Technical/Prefabs/GravPylon/GravPylon.tscn" id="5_1hdgl"]
+[ext_resource type="PackedScene" uid="uid://bqyqxjnlxoksy" path="res://Technical/Prefabs/Player/Player.tscn" id="5_al7fy"]
+[ext_resource type="AudioStream" uid="uid://bq77ow5shf7m7" path="res://Artistic/Music/JDSherbert - Nostalgia Music Pack - Link Cable.wav" id="7_kh24c"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(3.09397, 3.09397)
+texture = ExtResource("1_p3lw6")
+
+[node name="GameplayManager" type="Node" parent="."]
+script = ExtResource("1_2mn1i")
+
+[node name="WaveManager" type="Node" parent="."]
+script = ExtResource("2_sqhqt")
+
+[node name="Room" parent="." instance=ExtResource("4_h2h47")]
+scale = Vector2(0.449929, 0.415477)
+
+[node name="Player" parent="." instance=ExtResource("5_al7fy")]
+position = Vector2(1.52588e-05, -1.52588e-05)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+update_rotation = false
+
+[node name="AttractorStat" parent="." instance=ExtResource("5_1hdgl")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1.52588e-05, -1.52588e-05)
+position_smoothing_enabled = true
+
+[node name="AttractorStat2" parent="." instance=ExtResource("5_1hdgl")]
+position = Vector2(-577, -574)
+
+[node name="AttractorStat3" parent="." instance=ExtResource("5_1hdgl")]
+position = Vector2(579, -571)
+
+[node name="AttractorStat4" parent="." instance=ExtResource("5_1hdgl")]
+position = Vector2(-590, 553)
+
+[node name="AttractorStat5" parent="." instance=ExtResource("5_1hdgl")]
+position = Vector2(585, 545)
+
+[node name="Spawners" type="Node" parent="."]
+
+[node name="Spawner1" type="Node2D" parent="Spawners"]
+position = Vector2(675, 630)
+
+[node name="Spawner2" type="Node2D" parent="Spawners"]
+position = Vector2(-702, 646)
+
+[node name="Spawner3" type="Node2D" parent="Spawners"]
+position = Vector2(670, -670)
+
+[node name="Spawner4" type="Node2D" parent="Spawners"]
+position = Vector2(-678, -697)
+
+[node name="Spawner5" type="Node2D" parent="Spawners"]
+position = Vector2(294, 275)
+
+[node name="Spawner6" type="Node2D" parent="Spawners"]
+position = Vector2(-427, 323)
+
+[node name="Spawner7" type="Node2D" parent="Spawners"]
+position = Vector2(315, -320)
+
+[node name="Spawner8" type="Node2D" parent="Spawners"]
+position = Vector2(-403, -307)
+
+[node name="Pointer" type="Node2D" parent="."]
+position = Vector2(-760, -740)
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_kh24c")
+volume_db = -22.847
+autoplay = true
+
+[connection signal="shoot" from="Player" to="GameplayManager" method="_on_player_shoot"]

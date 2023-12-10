@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://bywspgn4thh3o"]
+
+[ext_resource type="Script" path="res://Technical/Prefabs/Bullet/Bullet.gd" id="1_5j8e1"]
+[ext_resource type="Texture2D" uid="uid://cco6aeprxfd4p" path="res://Artistic/Sprites/PNG/Default/ship_B.png" id="2_kprte"]
+[ext_resource type="AudioStream" uid="uid://c75pkdbhosup8" path="res://Artistic/Sounds/fire.wav" id="3_njla2"]
+[ext_resource type="AudioStream" uid="uid://bmos31qgetmni" path="res://Artistic/Sounds/impactWall.wav" id="4_2f3d8"]
+[ext_resource type="AudioStream" uid="uid://p804elfkdene" path="res://Artistic/Sounds/impactDamageable.wav" id="5_flmh8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_15qr2"]
+radius = 7.0
+
+[node name="Bullet" type="RigidBody2D" groups=["Attractor", "Bullet"]]
+rotation = 1.5708
+collision_layer = 4
+collision_mask = 2
+mass = 15.0
+gravity_scale = 0.0
+max_contacts_reported = 4
+contact_monitor = true
+script = ExtResource("1_5j8e1")
+damage = 25
+speed = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -4.71239
+shape = SubResource("CapsuleShape2D_15qr2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -4.71239
+texture = ExtResource("2_kprte")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="FireSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_njla2")
+autoplay = true
+max_polyphony = 4
+
+[node name="ImpactWallSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_2f3d8")
+volume_db = 1.514
+max_polyphony = 4
+area_mask = 3
+
+[node name="ImpactDamageableSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_flmh8")
+volume_db = 4.324
+max_polyphony = 4
+area_mask = 3
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
